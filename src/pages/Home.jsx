@@ -8,18 +8,9 @@ import char4path from '../assets/images/char4.png';
 import char5path from '../assets/images/char5.png';
 import BotCard from '../components/BotCard.jsx';
 import GameCard from '../components/GameCard.jsx';
+import { Footer } from '../components/Footer.jsx';
 
 export default function Home() {
-
-    const slideLeft = () => {
-        var slide = document.getElementById('slider');
-        slide.scrollLeft = slide.scrollLeft - 500;
-    };
-
-    const slideRight = () => {
-        var slide = document.getElementById('slider');
-        slide.scrollLeft = slide.scrollLeft + 500;
-    }
 
     return (
         <div id='home' className="flex flex-col">
@@ -44,9 +35,13 @@ export default function Home() {
                 </div>
             </div>
 
-            <div id="facCardContainer" className='flex flex-row justify-center mt-5 gap-2'>
+            <div id="facCardContainer" className='flex flex-row my-20 justify-evenly'>
                 <BotCard />
                 <GameCard />
+            </div>
+
+            <div id="footer">
+                <Footer />
             </div>
         </div>
     )
