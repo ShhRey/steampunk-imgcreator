@@ -29,7 +29,7 @@ const ChatbotComponent = () => {
 
     try {
       // Trigger API call with selected character and message
-      const response = await axios.post("http://localhost:8000/api/chatbot_api/message", {
+      const response = await axios.post("http://98.81.229.68:8000/api/chatbot_api/message", {
         characters: selectedCharacter, // Include selected character in API call
         message: input,
       });
