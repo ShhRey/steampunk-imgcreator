@@ -14,7 +14,7 @@ export default function Navbar() {
 			<div className="absolute left-1/2 transform -translate-x-1/2"> {/* Centered text with flex-1 */}
 				<h1 className="text-2xl font-bold text-orange-400 glitter-text">
 					<Link to="/" className="hover:text-orange-500">
-						Welcome to the World of StreamPunk
+						Welcome to the World of SteamPunk
 					</Link>
 				</h1>
 			</div>
@@ -24,7 +24,7 @@ export default function Navbar() {
 					Play Game
 				</Link>
 				<Link to="/chatbot" className="px-4 py-2 font-semibold rounded hover:bg-orange-600 glitter-button">
-					StreamPunk Chat
+					SteamPunk Chat
 				</Link>
 			</div>
 		</nav>
