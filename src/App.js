@@ -1,27 +1,22 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar'; // Import the Navbar
 import Home from './pages/Home';
-import GenImg from './pages/GenImg';
+import Chatbot from './pages/Chatbot';
 import PlayGame from './pages/PlayGame';
 
-import { createContext } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// Global Context for a group of Components
-export const AppContext = createContext();
-
 function App() {
-	return (
-		<div className="App">
-			<AppContext.Provider value={{}}>
-				<Router>
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/create-img" element={<GenImg />} />
-						<Route path="/play-game" element={<PlayGame />} />
-					</Routes>
-				</Router>
-    		</AppContext.Provider>
-		</div>
-	);
+    return (
+        <div className="App">
+            <Router>
+                <Navbar /> {/* Include the Navbar */}
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/create-img" element={<Chatbot />} />
+                    <Route path="/play-game" element={<PlayGame />} />
+                </Routes>
+            </Router>
+        </div>
+    );
 }
 
 export default App;
