@@ -1,17 +1,21 @@
 import { Link } from "react-router-dom";
 import "../styles/navbar.css";
-import logoPath from '../assets/videos/sp-logo.mp4'
+import logoPath from '../assets/videos/sp-logo.mp4';
 
 export default function Navbar() {
 	return (
-		<nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between p-4 border-b border-orange-500 bg-black opacity-90">
-			<div className="flex-shrink-0">
-				<video src={logoPath} alt="Logo" className="h-8 w-8" />
+		<nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between p-4 backdrop-blur-md bg-[rgba(30,30,30,0.7)]"> {/* Properly spaced items with justify-between */}
+			<div className="flex-shrink-0 ml-9">
+				<Link to="/">
+					<video src={logoPath} alt="Logo" className="h-12 w-12" />
+				</Link>
 			</div>
 
-			<div className="flex-grow text-center">
-				<h1 className="text-xl text-center font-bold glitter-text">
-					<Link to="/">Steam Punk</Link>
+			<div className="absolute left-1/2 transform -translate-x-1/2"> {/* Centered text with flex-1 */}
+				<h1 className="text-2xl font-bold text-orange-400 glitter-text">
+					<Link to="/" className="hover:text-orange-500">
+						Welcome to the World of StreamPunk
+					</Link>
 				</h1>
 			</div>
 
