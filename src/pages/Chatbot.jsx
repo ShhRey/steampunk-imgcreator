@@ -59,15 +59,15 @@ const ChatbotComponent = () => {
   };
 
   return (
-    <div className="relative flex justify-center items-center min-h-screen bg-[#2b2a2a] overscroll-y-none">
+    <div className="relative flex justify-center items-center min-h-screen bg-[#2b2a2a]">
       {/* Background Video */}
-      <video className='absolute top-0 left-0 w-full h-screen object-cover opacity-80' src={chatbotVideo} autoPlay loop muted />
+      <video className="absolute top-0 left-0 w-full h-full object-cover opacity-80" src={chatbotVideo} autoPlay loop muted />
 
       {/* Chatbot Container */}
-      <div className="bg-[#3e3d3d] border-4 border-yellow-800 rounded-lg w-[700px] h-[700px] relative shadow-[0px_0px_20px_rgba(0,0,0,0.7)] z-10">
+      <div className="bg-[#3e3d3d] border-4 border-yellow-800 rounded-xl max-w-[90vw] max-h-[90vh] min-w-[400px] min-h-[400px] w-[60vw] h-[65vh] relative shadow-[0px_0px_20px_rgba(0,0,0,0.7)] z-10 flex flex-col">
         
         {/* Chat Display */}
-        <div className="border border-yellow-800 w-full h-[85%] p-4 bg-gradient-to-b from-[#4a4a4a] to-[#2b2a2a] overflow-y-auto">
+        <div className="border border-yellow-800 flex-grow p-4 bg-gradient-to-b from-[#4a4a4a] to-[#2b2a2a] overflow-y-auto rounded-t-xl">
           {messages.map((message, index) => (
             <div
               key={index}
@@ -85,7 +85,7 @@ const ChatbotComponent = () => {
         </div>
 
         {/* Bottom Section: Character Select and Input */}
-        <div className="border-t border-yellow-800 p-4 flex items-center bg-[#3e3d3d] relative">
+        <div className="border-t border-yellow-800 p-4 flex items-center bg-[#3e3d3d] relative rounded-b-xl">
           
           {/* Character Select Drop-up */}
           <div className="relative">
