@@ -11,7 +11,7 @@ function App() {
                 <Navbar /> {/* Include the Navbar */}
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/create-img" element={<Chatbot />} />
+                    <Route path="/chatbot" element={<Chatbot />} />
                     <Route path="/play-game" element={<PlayGame />} />
                 </Routes>
             </Router>

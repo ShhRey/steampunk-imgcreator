@@ -1,4 +1,3 @@
-import Navbar from '../components/Navbar.jsx';
 import '../styles/Home.css';
 import arenaVideo from '../assets/videos/arena.mp4';
 import ReCharCard from '../components/ReCharCard.jsx';
@@ -12,8 +11,6 @@ export default function Home() {
 
     return (
         <div id='home' className="flex flex-col">
-            {/* <Navbar /> */}
-
             <div id='heroContent' className="flex flex-row relative w-full h-screen">
                 <video className='absolute top-0 left-0 w-full h-screen object-cover opacity-80' src={arenaVideo} autoPlay loop muted />
                 <div id='heroLeftCont' className='flex flex-col min-w-80 h-20'>
