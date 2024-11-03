@@ -23,9 +23,14 @@ export default function Navbar() {
 				<Link to="/play-game" className="px-4 py-2 font-semibold rounded hover:bg-orange-600 glitter-button">
 					Play Game
 				</Link>
-				<Link to="/chatbot" className="px-4 py-2 font-semibold rounded hover:bg-orange-600 glitter-button">
+				<a
+						href="https://dubeydhananjay.github.io/DD_HackNJIT24/"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="px-4 py-2 font-semibold rounded hover:bg-orange-600 glitter-button"
+					>
 					SteamPunk Chat
-				</Link>
+				</a>
 			</div>
 		</nav>
 	);
