@@ -12,7 +12,6 @@ export default function Home() {
 	
     return (
         <div id='home' className="flex flex-col">
-            <Navbar />
             <div id='heroContent' className="flex flex-row">
                 <div id='heroLeftCont' className='flex flex-col'>
                     <div id='descTextCont' className='flex flex-col'>
