@@ -1,51 +1,114 @@
-import React, { useState } from 'react';
+// Chatbot.js
+import React, { useState } from "react";
+import Chatbot from "react-chatbot-kit";
+import "react-chatbot-kit/build/main.css";
+import config from "../components/config";
+import MessageParser from "../components/MessageParser";
+import ActionProvider from "../components/ActionProvider";
+import axios from "axios";
+import chatbotVideo from '../assets/videos/chatbot.mp4';
 
-export default function Chatbot() {
-  const [message, setMessage] = useState('');
-  const [selectedCharacter, setSelectedCharacter] = useState('default');
+const ChatbotComponent = () => {
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [selectedCharacter, setSelectedCharacter] = useState("Gadgeteer Garvin");
 
-  const handleSendMessage = () => {
-    // Implement the function to handle sending the message
+  // Function to handle sending message
+  const handleSend = async () => {
+    if (input.trim() === "") return;
+
+    // Display user's message
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { type: "user", text: input }
+    ]);
+
+    try {
+      // Trigger API call with selected character and message
+      const response = await axios.post("http://localhost:8000/api/chatbot_api/message", {
+        characters: selectedCharacter, // Include selected character in API call
+        message: input,
+      });
+      
+      // Display API response
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { type: "bot", text: response.data.message }
+      ]);
+    } catch (error) {
+      console.error("Error fetching API response:", error);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { type: "bot", text: "Sorry, something went wrong. Please try again." }
+      ]);
+    }
+
+    // Clear input
+    setInput("");
+  };
+
+  // Function to handle character selection and reset messages
+  const handleCharacterSelect = (character) => {
+    setSelectedCharacter(character);
+    setMessages([]); // Reset messages when character changes
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-yellow-400">
-      <div className="w-96 h-[500px] border border-yellow-400 rounded-lg p-4">
-        {/* Navbar */}
-        <div className="h-10 bg-gray-800 mb-2 rounded-lg flex items-center justify-center">
-          <p className="text-sm">Navbar</p>
-        </div>
+    <div className="relative flex justify-center items-center min-h-screen bg-[#2b2a2a] overscroll-y-none">
+      {/* Background Video */}
+      <video className='absolute top-0 left-0 w-full h-screen object-cover opacity-80' src={chatbotVideo} autoPlay loop muted />
 
+      {/* Chatbot Container */}
+      <div className="bg-[#3e3d3d] border-4 border-yellow-800 rounded-lg w-[600px] h-[600px] relative shadow-[0px_0px_20px_rgba(0,0,0,0.7)] z-10">
+        
         {/* Chat Display */}
-        <div className="h-[350px] bg-gray-800 rounded-lg mb-2 overflow-y-auto">
-          <p className="text-sm text-center mt-20">Where chat will appear</p>
+        <div className="border border-yellow-800 w-full h-[80%] p-4 bg-gradient-to-b from-[#4a4a4a] to-[#2b2a2a] overflow-y-auto">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`p-2 m-1 ${
+                message.type === "user" ? "text-right text-[#e5c07b]" : "text-left text-[#d4af37]"
+              }`}
+            >
+              {message.text}
+            </div>
+          ))}
         </div>
 
-        {/* Input Area */}
-        <div className="flex items-center bg-gray-800 rounded-lg p-2">
-          {/* Character Select Dropdown */}
-          <select
-            className="bg-gray-700 text-yellow-400 p-1 rounded mr-2"
-            value={selectedCharacter}
-            onChange={(e) => setSelectedCharacter(e.target.value)}
-          >
-            <option value="default">Select Character</option>
-            {/* Add other options here */}
-          </select>
+        {/* Bottom Section: Character Select and Input */}
+        <div className="border-t border-yellow-800 p-4 flex items-center bg-[#3e3d3d] relative">
+          
+          {/* Character Select Drop-up */}
+          <div className="relative group">
+            <button className="w-10 h-10 rounded-full bg-yellow-700 border-2 border-yellow-900 shadow-lg focus:outline-none flex items-center justify-center">
+              ☸️
+            </button>
+            <div className="absolute bottom-12 left-0 hidden group-hover:block bg-yellow-800 border border-yellow-900 rounded shadow-lg text-[#d4af37]">
+              {["Gadgeteer Garvin", "Professor Cogsworth", "Colonel Rustbottom", "Captain Gearheart", "Lady Clockwork"].map((character, index) => (
+                <div
+                  key={index}
+                  className="px-4 py-2 hover:bg-yellow-700 cursor-pointer"
+                  onClick={() => handleCharacterSelect(character)} // Select character on click
+                >
+                  {character}
+                </div>
+              ))}
+            </div>
+          </div>
 
-          {/* Message Input */}
+          {/* Text Input */}
           <input
             type="text"
-            className="flex-grow bg-gray-700 text-yellow-400 p-1 rounded mr-2"
-            placeholder="Type here to chat with the character"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            placeholder={`Type here to chat with ${selectedCharacter}`}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="flex-grow ml-4 p-3 bg-transparent border border-yellow-800 rounded text-[#e5c07b] placeholder-[#d4af37] outline-none focus:ring-2 focus:ring-yellow-700"
           />
 
           {/* Send Button */}
           <button
-            onClick={handleSendMessage}
-            className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-1 px-3 rounded"
+            onClick={handleSend}
+            className="ml-2 px-4 py-2 bg-yellow-700 rounded shadow-lg text-[#d4af37] font-bold hover:bg-yellow-800"
           >
             Send
           </button>
@@ -53,4 +116,6 @@ export default function Chatbot() {
       </div>
     </div>
   );
-}
+};
+
+export default ChatbotComponent;

@@ -1,7 +1,6 @@
 import Home from './pages/Home';
 import Chatbot from './pages/Chatbot';
 import PlayGame from './pages/PlayGame';
-
 import { createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
