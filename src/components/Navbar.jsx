@@ -20,17 +20,17 @@ export default function Navbar() {
 			</div>
 
 			<div className="flex space-x-4">
-				<Link to="/play-game" className="px-4 py-2 font-semibold rounded hover:bg-orange-600 glitter-button">
-					Play Game
-				</Link>
-				<a
+			<a
 						href="https://dubeydhananjay.github.io/DD_HackNJIT24/"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="px-4 py-2 font-semibold rounded hover:bg-orange-600 glitter-button"
 					>
+						Play Game
+					</a>
+				<Link to="/chatbot" className="px-4 py-2 font-semibold rounded hover:bg-orange-600 glitter-button">
 					SteamPunk Chat
-				</a>
+				</Link>
 			</div>
 		</nav>
 	);
